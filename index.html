@@ -8,379 +8,368 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <style>
-        /* Variáveis de Cores */
+        /* Variáveis de Cores (Paleta Nova) */
         :root {
-            --cor-principal: #8D172B; /* Vermelho do coração da logo, ligeiramente mais escuro para texto/botões */
-            --cor-destaque: #D1A535; /* Dourado/Mostarda da cruz e texto da logo */
-            --cor-texto-escuro: #2c3e50; /* Preto quase marinho para contraste forte */
-            --cor-texto-claro: #4a4a4a;
-            --cor-background-claro: #fcfcfc; /* Branco suave (fundo da logo) */
-            --cor-branco: #ffffff;
-            --cor-borda-input: #dcdcdc;
-            --cor-sombra: rgba(0, 0, 0, 0.08);
+            --cor-principal: #8D172B; /* Vermelho Vinho */
+            --cor-principal-hover: #731222; /* Vermelho mais escuro */
+            --cor-destaque: #D1A535; /* Dourado */
+            --cor-destaque-hover: #b8922c; /* Dourado mais escuro */
+            --cor-fundo: #FDF9F3;     /* Um branco mais quente, "off-white" */
+            --cor-fundo-secao: #FFFFFF;
+            --cor-texto: #333333;
+            --cor-texto-claro: #555555;
+            --cor-sombra: rgba(141, 23, 43, 0.1); /* Sombra baseada na cor principal */
         }
 
-        /* Estilos Gerais e Reset Básico */
+        /* Animação de Entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos Gerais e Reset */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.7;
-            color: var(--cor-texto-claro);
-            background-color: var(--cor-background-claro);
+        html {
             scroll-behavior: smooth;
         }
 
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            overflow-x: hidden;
+        }
+
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px; /* Reduzindo padding lateral um pouco para mobile */
+            padding: 0 25px;
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Lora', serif;
             color: var(--cor-principal);
             text-align: center;
-            margin-bottom: 20px; /* Reduzindo um pouco a margem inferior */
+            margin-bottom: 25px;
             font-weight: 700;
-        }
-
-        h1 {
-            font-size: 3.2em; /* Reduzindo fonte para telas maiores mobile */
-            color: var(--cor-destaque);
-            line-height: 1.1;
-            margin-bottom: 15px; /* Reduzindo um pouco a margem inferior */
         }
 
         h2 {
-            font-size: 2.4em; /* Reduzindo fonte para telas maiores mobile */
-            margin-top: 15px; /* Reduzindo um pouco a margem superior */
+            font-size: 2.8em;
+            margin-bottom: 50px;
         }
-
+        
         p {
-            margin-bottom: 15px; /* Reduzindo um pouco a margem inferior */
-            font-size: 1em;
-            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: var(--cor-texto-claro);
         }
 
+        /* Botão Principal CTA */
         .btn {
             display: inline-block;
-            background-color: var(--cor-principal);
-            color: var(--cor-branco);
-            padding: 16px 30px; /* Reduzindo um pouco o padding */
+            background: linear-gradient(145deg, var(--cor-destaque), var(--cor-destaque-hover));
+            color: var(--cor-principal);
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 25px; /* Reduzindo um pouco a margem superior */
+            font-size: 1.1em;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+            margin-top: 30px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(209, 165, 53, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
-            background-color: #6a101f; /* Tom mais escuro do vermelho principal */
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(209, 165, 53, 0.35);
         }
-
-        .btn-secondary {
-            background-color: var(--cor-destaque);
-            color: var(--cor-principal);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        
+        /* NOVO: Estilo do botão social (Instagram) */
+        .btn-social {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--cor-fundo);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: 2px solid var(--cor-fundo);
+            cursor: pointer;
         }
-
-        .btn-secondary:hover {
-            background-color: #b8922c; /* Tom mais escuro do dourado */
+        .btn-social:hover {
+            background-color: var(--cor-fundo);
             color: var(--cor-principal);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         /* Seções */
         section {
-            padding: 60px 0; /* Reduzindo padding vertical para mobile */
+            padding: 100px 0;
             text-align: center;
             position: relative;
+        }
+        
+        /* Separadores de Seção em Onda */
+        .section-divider {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
             overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
         }
-
-        section:nth-of-type(even) {
-            background-color: var(--cor-branco);
+        .section-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 90px;
         }
-        section:nth-of-type(odd) {
-            background-color: var(--cor-background-claro);
+        .shape-fill {
+            fill: var(--cor-fundo);
+        }
+        #como-funciona .shape-fill {
+            fill: var(--cor-fundo-secao);
         }
 
         /* Cabeçalho / Hero Section */
         #hero {
-            padding: 80px 0 60px; /* Reduzindo padding vertical para mobile */
+            background: linear-gradient(135deg, var(--cor-principal) 0%, var(--cor-principal-hover) 100%);
+            color: var(--cor-fundo);
+            padding-top: 80px;
+            padding-bottom: 150px;
+        }
+        
+        #hero .logo, #hero h1, #hero h2, #hero .btn, #hero .btn-social {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
         }
 
+        #hero h1 { animation-delay: 0.2s; }
+        #hero h2 { animation-delay: 0.4s; }
+        #hero .btn { animation-delay: 0.6s; }
+        #hero .btn-social { animation-delay: 0.8s; } /* Animação do novo botão */
+
         #hero .logo {
-            margin-bottom: 25px; /* Reduzindo margem inferior */
-            max-width: 280px; /* Reduzindo um pouco o tamanho da logo */
+            margin-bottom: 30px;
+            max-width: 250px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
 
         #hero h1 {
-            font-size: 2.8em; /* Reduzindo fonte para telas menores mobile */
-            margin-bottom: 12px; /* Reduzindo margem inferior */
+            font-size: 3.5em;
+            color: var(--cor-fundo);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         #hero h2 {
-            font-size: 1.8em; /* Reduzindo fonte para telas menores mobile */
-            font-weight: 500;
-            margin-top: 0;
-            max-width: 90%; /* Largura máxima um pouco menor */
+            font-size: 1.5em;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* Seção "Por que essa comunidade existe?" */
+        /* Seção "Por que existe" */
+        #porque-existe {
+            background-color: var(--cor-fundo);
+        }
         #porque-existe p {
-            max-width: 90%; /* Largura máxima um pouco menor */
-            margin-bottom: 16px;
-            font-size: 1.05em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        /* Seção "Como funciona" */
-        #como-funciona .grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Aumentando minmax para evitar quebra muito cedo */
-            gap: 25px; /* Reduzindo gap */
-            margin-top: 30px; /* Reduzindo margem superior */
-        }
-
-        #como-funciona .grid-item {
-            background-color: var(--cor-background-claro);
-            padding: 25px; /* Reduzindo padding interno */
-            border-radius: 10px; /* Arredondamento menor */
-            box-shadow: 0 6px 20px var(--cor-sombra);
-            text-align: center;
-            border-bottom: 4px solid var(--cor-destaque); /* Linha menor */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        #como-funciona .grid-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        #como-funciona .grid-item .icon {
-            font-size: 3em; /* Reduzindo tamanho do ícone */
-            color: var(--cor-destaque);
-            margin-bottom: 12px; /* Reduzindo margem inferior */
-            display: block;
-        }
-
-        #como-funciona .grid-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3em;
-            margin-top: 8px;
+        #porque-existe strong {
             color: var(--cor-principal);
             font-weight: 600;
         }
 
+        /* Seção "Como Funciona" */
+        #como-funciona {
+            padding-bottom: 150px;
+            background-color: var(--cor-fundo-secao);
+        }
+        #como-funciona .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        #como-funciona .grid-item {
+            background-color: var(--cor-fundo);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px var(--cor-sombra);
+            text-align: center;
+            border-left: 5px solid transparent;
+            transition: all 0.4s ease;
+        }
+        #como-funciona .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(141, 23, 43, 0.15);
+            border-left-color: var(--cor-destaque);
+        }
+
+        #como-funciona .grid-item .icon {
+            font-size: 3em;
+            color: var(--cor-principal);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        #como-funciona .grid-item:hover .icon {
+            color: var(--cor-destaque);
+        }
+
+        #como-funciona .grid-item h3 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: var(--cor-principal);
+        }
+
         #como-funciona .grid-item p {
-            font-size: 0.95em;
-            color: var(--cor-texto-claro);
-            line-height: 1.5;
+            font-size: 1em;
+            line-height: 1.6;
             margin-bottom: 0;
         }
 
         /* Formulário de Entrevista */
         #entrevista {
-            background-color: var(--cor-principal);
-            color: var(--cor-branco);
-            padding: 60px 0; /* Reduzindo padding vertical para mobile */
+            background: var(--cor-principal);
         }
 
         #entrevista h2 {
             color: var(--cor-destaque);
-            font-size: 2em; /* Reduzindo fonte */
-            margin-bottom: 30px; /* Reduzindo margem inferior */
         }
-
         #entrevista form {
-            background-color: var(--cor-branco);
-            padding: 30px 20px; /* Reduzindo padding interno */
-            border-radius: 12px; /* Arredondamento menor */
+            background-color: var(--cor-fundo-secao);
+            padding: 50px;
+            border-radius: 15px;
             max-width: 800px;
             margin: 0 auto;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             text-align: left;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        #entrevista .form-group {
-            margin-bottom: 20px; /* Reduzindo margem inferior */
-        }
+        #entrevista .form-group { margin-bottom: 25px; }
 
         #entrevista label {
             display: block;
-            margin-bottom: 8px; /* Reduzindo margem inferior */
-            font-weight: 600;
+            margin-bottom: 8px;
+            font-weight: 500;
             color: var(--cor-principal);
-            font-size: 1em;
+            font-size: 1.1em;
         }
 
-        #entrevista input,
-        #entrevista textarea,
-        #entrevista select {
+        #entrevista input, #entrevista textarea, #entrevista select {
             width: 100%;
-            padding: 12px 14px; /* Reduzindo padding interno */
-            border: 1px solid var(--cor-borda-input);
-            border-radius: 6px; /* Arredondamento menor */
-            font-size: 0.95em;
-            color: var(--cor-texto-escuro);
-            background-color: var(--cor-background-claro);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            transition: all 0.3s ease;
         }
 
-        #entrevista input:focus,
-        #entrevista textarea:focus,
-        #entrevista select:focus {
+        #entrevista input:focus, #entrevista textarea:focus, #entrevista select:focus {
             border-color: var(--cor-destaque);
-            box-shadow: 0 0 0 3px rgba(209, 165, 53, 0.3);
+            box-shadow: 0 0 0 4px rgba(209, 165, 53, 0.2);
             outline: none;
         }
 
-        #entrevista textarea {
-            resize: vertical;
-            min-height: 80px; /* Reduzindo altura mínima */
-        }
+        #entrevista textarea { min-height: 120px; resize: vertical; }
 
-        #entrevista .radio-group,
-        #entrevista .checkbox-group {
-            display: flex;
-            gap: 15px; /* Reduzindo gap */
-            flex-wrap: wrap;
-            margin-top: 8px; /* Reduzindo margem superior */
+        #entrevista .radio-group { display: flex; gap: 25px; flex-wrap: wrap; margin-top: 10px; }
+        
+        #entrevista .radio-group label {
+            display: flex; align-items: center; font-weight: 400; color: var(--cor-texto-claro); cursor: pointer;
         }
-
-        #entrevista .radio-group label,
-        #entrevista .checkbox-group label {
-            display: flex;
-            align-items: center;
-            font-weight: 400;
-            color: var(--cor-texto-claro);
-            margin-bottom: 0;
-            cursor: pointer;
-            font-size: 0.95em;
+        #entrevista .radio-group input { width: auto; margin-right: 10px; accent-color: var(--cor-principal); }
+        
+        #entrevista .btn {
+            width: 100%;
+            background: linear-gradient(145deg, var(--cor-principal), var(--cor-principal-hover));
+            color: var(--cor-fundo);
+            box-shadow: 0 8px 20px rgba(141, 23, 43, 0.25);
         }
-
-        #entrevista .radio-group input,
-        #entrevista .checkbox-group input {
-            margin-right: 6px; /* Reduzindo margem direita */
-            transform: scale(1); /* Ajustando escala */
-            accent-color: var(--cor-destaque);
-        }
-
-        #entrevista .disclaimer {
-            background-color: var(--cor-destaque);
-            color: var(--cor-principal);
-            padding: 20px; /* Reduzindo padding */
-            border-radius: 8px; /* Arredondamento menor */
-            margin-top: 30px; /* Reduzindo margem superior */
-            font-weight: 600;
-            text-align: center;
-            font-size: 1em;
-            line-height: 1.4;
-            border: 1px solid var(--cor-principal); /* Borda menor */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        #entrevista .disclaimer p {
-            margin-bottom: 0;
-            color: var(--cor-principal);
+        #entrevista .btn:hover {
+            box-shadow: 0 12px 25px rgba(141, 23, 43, 0.35);
         }
 
         /* Footer */
         footer {
-            background-color: var(--cor-texto-escuro);
-            color: rgba(255, 255, 255, 0.8);
+            background-color: #2c2c2c;
+            color: rgba(255, 255, 255, 0.7);
             text-align: center;
-            padding: 25px 0; /* Reduzindo padding vertical */
-            font-size: 0.85em;
+            padding: 40px 0;
+            font-size: 0.9em;
         }
 
-        /* Media Queries para Telas Menores (Refinamento) */
+        /* NOVO: Estilo dos ícones sociais no rodapé */
+        .footer-socials {
+            margin-bottom: 20px;
+        }
+        .footer-socials a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.8em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-socials a:hover {
+            color: var(--cor-destaque);
+        }
+        
+        /* Responsividade */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 15px; /* Mais padding nas laterais para telas pequenas */
-            }
-            h1 {
-                font-size: 2.6em;
-            }
-            h2 {
-                font-size: 2em;
-            }
-            .btn {
-                padding: 14px 25px;
-                font-size: 0.95em;
-            }
-            #hero .logo {
-                max-width: 240px;
-            }
-            #hero h2 {
-                font-size: 1.6em;
-            }
-            #como-funciona .grid {
-                grid-template-columns: 1fr; /* Forçando uma coluna em telas menores */
-                max-width: 90%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            #como-funciona .grid-item {
-                padding: 20px; /* Menor padding ainda */
-            }
+            h2 { font-size: 2.2em; }
+            #hero h1 { font-size: 2.8em; }
+            #hero h2 { font-size: 1.2em; }
+            section { padding: 80px 0; }
+            #hero { padding-bottom: 120px; }
+            #como-funciona { padding-bottom: 120px; }
+            .section-divider svg { height: 60px; }
+            #entrevista form { padding: 30px 25px; }
         }
-
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2.2em;
-            }
-            h2 {
-                font-size: 1.7em;
-            }
-            p {
-                font-size: 0.9em;
-            }
-            section {
-                padding: 50px 0;
-            }
-            #hero {
-                padding: 60px 0 50px;
-            }
-            #hero .logo {
-                max-width: 200px;
-            }
-            #hero h2 {
-                font-size: 1.4em;
-            }
-            #entrevista form {
-                padding: 20px 15px;
-            }
-            #entrevista .disclaimer {
-                font-size: 0.9em;
-                padding: 15px;
-            }
-            .btn {
-                padding: 12px 20px;
-                font-size: 0.9em;
-            }
-            #entrevista .radio-group,
-            #entrevista .checkbox-group {
-                flex-direction: column; /* Rádios/checkboxes um abaixo do outro */
-                gap: 10px;
-            }
+            h2 { font-size: 1.8em; margin-bottom: 30px; }
+            #hero h1 { font-size: 2.1em; }
+            #hero h2 { font-size: 1.1em; }
+            p { font-size: 1em; }
+            .btn { padding: 16px 30px; font-size: 1em; }
+            .btn-social { padding: 10px 20px; font-size: 0.9em; }
+            #entrevista .radio-group { flex-direction: column; gap: 15px; align-items: flex-start; }
         }
     </style>
 </head>
@@ -390,78 +379,93 @@
         <div class="container">
             <img src="https://res.cloudinary.com/dwu4r8y1a/image/upload/v1753930768/20250730_2359_Logo_com_Fundo_Transparente_remix_01k1f6jp7ffw9v16m6szcv8h06_suplgl.png" alt="Logo Conexão Amor Cristão" class="logo">
             <h1>Conexão Amor Cristão</h1>
-            <h2>Onde corações se unem com um propósito maior: construir relacionamentos sérios e alianças duradouras em Cristo.</h2>
-            <a href="#entrevista" class="btn">➡️ Quero me Conectar com Propósito</a>
+            <h2>Unindo corações com um propósito maior: construir relacionamentos sérios e alianças duradouras em Cristo.</h2>
+            <a href="#entrevista" class="btn">Quero me conectar com propósito</a>
+            
+            <a href="https://www.instagram.com/conexaoamorcristao" class="btn-social" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Siga-nos no Instagram</span>
+            </a>
+
+        </div>
+        <div class="section-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
         </div>
     </section>
 
     <section id="porque-existe">
         <div class="container">
-            <h2>Por que essa comunidade existe?</h2>
-            <p>Porque o amor cristão vai além de sentimentos; é sobre **propósito, aliança e edificação** mútua.</p>
-            <p>Porque buscamos parceiros(as) que compartilhem da mesma **fé, valores e compromisso** com o Reino de Deus.</p>
-            <p>Porque acreditamos que relacionamentos verdadeiros são construídos sobre **oração, respeito e a centralidade de Cristo** em cada passo.</p>
-            <p>E porque aqui, a **verdade e a transparência** são os pilares para encontrar a pessoa certa para uma vida inteira de aliança.</p>
+            <h2>Por Que Existimos?</h2>
+            <p>Porque o amor cristão vai além de sentimentos; é sobre <strong>propósito, aliança e edificação</strong> mútua.</p>
+            <p>Acreditamos que relacionamentos verdadeiros são construídos sobre <strong>oração, respeito e a centralidade de Cristo</strong> em cada passo.</p>
+            <p>Aqui, a <strong>verdade e a transparência</strong> são os pilares para encontrar a pessoa certa para uma vida inteira de aliança.</p>
         </div>
     </section>
 
     <section id="como-funciona">
         <div class="container">
-            <h2>Como Funciona</h2>
+            <h2>Nossa Jornada</h2>
             <div class="grid">
                 <div class="grid-item">
-                    <i class="fas fa-file-alt icon"></i> <h3>Sua Entrevista</h3>
-                    <p>Preencha nosso formulário com sinceridade e detalhes sobre sua jornada de fé e seus objetivos para um relacionamento.</p>
+                    <i class="fas fa-file-alt icon"></i> <h3>1. Sua Entrevista</h3>
+                    <p>Preencha nosso formulário com sinceridade sobre sua jornada de fé e seus objetivos.</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-user-check icon"></i> <h3>Análise de Perfil</h3>
-                    <p>Nossa equipe avalia cuidadosamente suas respostas para garantir alinhamento com os valores e o propósito da comunidade.</p>
+                    <i class="fas fa-user-check icon"></i> <h3>2. Análise de Perfil</h3>
+                    <p>Nossa equipe avalia suas respostas para garantir alinhamento com os valores da comunidade.</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-users icon"></i> <h3>Acesso Exclusivo</h3>
-                    <p>Após aprovação, você recebe o convite para nossa comunidade privada, um ambiente seguro para interações significativas.</p>
+                    <i class="fas fa-users icon"></i> <h3>3. Acesso Exclusivo</h3>
+                    <p>Após aprovação, você entra em nossa comunidade privada, um ambiente seguro e acolhedor.</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-comment-dots icon"></i> <h3>Conexões Reais</h3>
-                    <p>Participe de chamadas, eventos e receba indicações de perfis compatíveis, promovendo conexões genuínas e com propósito.</p>
+                    <i class="fas fa-comment-dots icon"></i> <h3>4. Conexões Reais</h3>
+                    <p>Participe de eventos e receba indicações de perfis, promovendo conexões genuínas.</p>
                 </div>
             </div>
+        </div>
+        <div class="section-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
         </div>
     </section>
 
     <section id="entrevista">
         <div class="container">
-            <h2>Dê o primeiro passo para uma Conexão com Propósito.</h2>
+            <h2>Dê o Primeiro Passo</h2>
             <form action="https://formspree.io/f/xldllnaj" method="POST">
+                <input type="hidden" name="_next" value="https://chat.whatsapp.com/HaQj4Sj1iLtAoGgrCg1dn7">
+
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" name="nome_completo" required placeholder="Seu nome completo">
                 </div>
                 <div class="form-group">
                     <label for="idade">Idade:</label>
-                    <input type="number" id="idade" name="idade" min="18" max="99" required placeholder="Ex: 25">
+                    <input type="number" id="idade" name="idade" min="18" max="99" required placeholder="Sua idade">
                 </div>
                 <div class="form-group">
                     <label for="cidade_estado">Cidade/Estado:</label>
-                    <input type="text" id="cidade_estado" name="cidade_estado" required placeholder="Ex: João Pessoa/PB">
+                    <input type="text" id="cidade_estado" name="cidade_estado" required placeholder="Ex: João Pessoa / PB">
                 </div>
                 <div class="form-group">
                     <label>Sexo:</label>
                     <div class="radio-group">
-                        <input type="radio" id="masculino" name="sexo" value="Masculino" required>
-                        <label for="masculino">Masculino</label>
-                        <input type="radio" id="feminino" name="sexo" value="Feminino">
-                        <label for="feminino">Feminino</label>
+                        <label><input type="radio" name="sexo" value="Masculino" required> Masculino</label>
+                        <label><input type="radio" name="sexo" value="Feminino"> Feminino</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="igreja">Você é membro ativo de alguma igreja? Qual?</label>
-                    <input type="text" id="igreja" name="igreja" placeholder="Ex: Igreja Batista Central, 3 anos de membro" required>
+                    <label for="igreja">Sua igreja e há quanto tempo é membro?</label>
+                    <input type="text" id="igreja" name="igreja" placeholder="Ex: Igreja Batista Central, 3 anos" required>
                 </div>
                 <div class="form-group">
                     <label for="tempo_caminhada">Há quanto tempo você caminha com Cristo?</label>
                     <select id="tempo_caminhada" name="tempo_caminhada_cristo" required>
-                        <option value="">Selecione</option>
+                        <option value="">Selecione uma opção</option>
                         <option value="Menos de 1 ano">Menos de 1 ano</option>
                         <option value="1-3 anos">1-3 anos</option>
                         <option value="3-5 anos">3-5 anos</option>
@@ -469,68 +473,45 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="relacionamentos_anteriores">Você já teve relacionamentos sérios antes? Se sim, como eles terminaram e o que você aprendeu com essas experiências?</label>
-                    <textarea id="relacionamentos_anteriores" name="relacionamentos_anteriores" required placeholder="Conte-nos sobre seus relacionamentos passados e os aprendizados."></textarea>
+                    <label for="motivacao">O que te motiva a buscar um relacionamento agora?</label>
+                    <textarea id="motivacao" name="motivacao_relacionamento" placeholder="Ex: Busco alguém para edificar uma família cristã..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Você é batizado(a)?</label>
+                    <label for="visao_namoro">Qual a sua visão sobre o namoro cristão?</label>
+                    <textarea id="visao_namoro" name="visao_namoro_cristao" required placeholder="Descreva sua compreensão sobre o namoro à luz da fé." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Aceita ser apresentado(a) no perfil da comunidade?</label>
                     <div class="radio-group">
-                        <input type="radio" id="batizado_sim" name="batizado" value="Sim" required>
-                        <label for="batizado_sim">Sim</label>
-                        <input type="radio" id="batizado_nao" name="batizado" value="Não">
-                        <label for="batizado_nao">Não</label>
+                        <label><input type="radio" name="aceita_apresentacao" value="Sim" required> Sim</label>
+                        <label><input type="radio" name="aceita_apresentacao" value="Não"> Não</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="motivacao">Qual a sua principal motivação para buscar um relacionamento agora?</label>
-                    <textarea id="motivacao" name="motivacao_relacionamento" placeholder="Ex: Busco alguém para edificar uma família cristã, com propósito de casamento." required></textarea>
+                    <label for="instagram">Seu Instagram (com @):</label>
+                    <input type="text" id="instagram" name="instagram_pessoal" placeholder="@seu_usuario" required>
                 </div>
                 <div class="form-group">
-                    <label for="visao_namoro">Em suas palavras, qual a sua visão sobre o namoro cristão e seus pilares fundamentais (pureza, oração, comunhão, etc.)?</label>
-                    <textarea id="visao_namoro" name="visao_namoro_cristao" required placeholder="Descreva sua compreensão sobre o namoro à luz da fé."></textarea>
+                    <label for="whatsapp">Seu WhatsApp (com DDD):</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="(XX) 99999-9999" required>
                 </div>
                 <div class="form-group">
-                    <label>Você aceitaria ser apresentado(a) nos stories da página da comunidade (com foto e informações de perfil aprovadas)?</label>
-                    <div class="radio-group">
-                        <input type="radio" id="apresentacao_sim" name="aceita_apresentacao" value="Sim" required>
-                        <label for="apresentacao_sim">Sim</label>
-                        <input type="radio" id="apresentacao_nao" name="aceita_apresentacao" value="Não">
-                        <label for="apresentacao_nao">Não</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Toparia participar de uma chamada de vídeo (virtual ou presencial) com outro(a) solteiro(a) indicado(a) pela comunidade?</label>
-                    <div class="radio-group">
-                        <input type="radio" id="chamada_sim" name="topa_chamada" value="Sim" required>
-                        <label for="chamada_sim">Sim</label>
-                        <input type="radio" id="chamada_nao" name="topa_chamada" value="Não">
-                        <label for="chamada_nao">Não</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="instagram">Instagram Pessoal (com @, ex: @seuuser):</label>
-                    <input type="text" id="instagram" name="instagram_pessoal" placeholder="@seuuserdoinsta" required>
-                </div>
-                <div class="form-group">
-                    <label for="whatsapp">WhatsApp (com DDD - Ex: (83) 99999-8888):</label>
-                    <input type="text" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" pattern="\(\d{2}\)\s\d{5}-\d{4}" title="Formato: (XX) XXXXX-XXXX" required>
-                </div>
-                <div class="form-group">
-                    <label for="link_foto">Link de uma Foto Atual (pode ser do Instagram, Google Drive, etc.):</label>
-                    <input type="url" id="link_foto" name="link_foto_atual" placeholder="https://linkdasuafoto.com/imagem.jpg" required>
+                    <label for="link_foto">Link de uma Foto Atual Sua:</label>
+                    <input type="url" id="link_foto" name="link_foto_atual" placeholder="https://..." required>
                 </div>
 
-                <div class="disclaimer">
-                    <p>Esta não é uma comunidade qualquer. É um lugar de **propósito divino**, construído sobre **verdade e comprometimento**. Se você mentir aqui, sequer tente enviar. A desonestidade é uma barreira intransponível para quem busca uma aliança séria e verdadeira diante de Deus. **Quem mente para entrar, não merece permanecer.**</p>
-                </div>
-
-                <button type="submit" class="btn btn-secondary">🚀 Enviar Minha Entrevista e Iniciar a Jornada</button>
+                <button type="submit" class="btn">🚀 Enviar Minha Entrevista</button>
             </form>
         </div>
     </section>
 
     <footer>
         <div class="container">
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/conexaoamorcristao" target="_blank" title="Siga-nos no Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
             <p>&copy; 2025 Conexão Amor Cristão. Todos os direitos reservados.</p>
         </div>
     </footer>
